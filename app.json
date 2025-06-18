@@ -4,17 +4,34 @@
     "slug": "Tawasalna",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/TawasalnaLogoW1.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "androidStatusBar": {
+      "backgroundColor": "#00000000",
+      "translucent": true
+    },
+    "androidNavigationBar": {
+      "backgroundColor": "#4e2eb0"
+    },
     "ios": {
-      "supportsTablet": true
+      "newArchEnabled": true,
+      "supportsTablet": true,
+      "splash": {
+        "image": "./assets/images/TawasalnaLogoW1.png",
+        "resizeMode": "cover",
+        "tabletImage": "./assets/images/splash-icon.png",
+        "backgroundColor": "#ffffff"
+      }
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+      "newArchEnabled": true,
+      "package": "com.ademseddik.test",
+      "splash": {
+        "resizeMode": "contain",
+        "image": "./assets/images/TawasalnaLogoW1.png",
+        "backgroundColor": "#4e2eb0"
       }
     },
     "web": {
@@ -24,15 +41,7 @@
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
-        }
-      ]
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
