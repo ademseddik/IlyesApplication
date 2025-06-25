@@ -1,17 +1,32 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList ,Image} from 'react-native';
+import { View, Text, StyleSheet, FlatList ,Image, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-const data = [
-  { id: '1', title: 'Profile', icon: 'person-outline' },
-  { id: '2', title: 'Info', icon: 'information-circle-outline' },
-  { id: '3', title: 'Data', icon: 'cloud-outline' },
-  { id: '4', title: 'Messages', icon: 'chatbox-ellipses-outline' },
-  { id: '5', title: 'Live Streaming', icon: 'videocam-outline' },
-  { id: '6', title: 'Maintenance', icon: 'construct-outline' },
+import { useRouter } from 'expo-router';
+type AppRoutes = 
+  '/ProfileScreen' | 
+  '/ProfileScreen' | 
+  '/DataTableScreen' | 
+  '/ProfileScreen' | 
+  '/ProfileScreen' | 
+  '/StreamingScreen' | 
+  '/Maintenance';
+const data: {
+  id: string;
+  title: string;
+  icon: string;
+  route: AppRoutes; // Use the typed route
+}[] = [
+  { id: '1', title: 'Profile', icon: 'person-outline', route: '/ProfileScreen' },
+  { id: '2', title: 'Info', icon: 'information-circle-outline', route: '/ProfileScreen'  },
+  { id: '3', title: 'Data', icon: 'cloud-outline' , route: '/DataTableScreen' },
+  { id: '4', title: 'Messages', icon: 'chatbox-ellipses-outline', route: '/ProfileScreen'  },
+  { id: '5', title: 'Live Streaming', icon: 'videocam-outline', route: '/StreamingScreen'  },
+  { id: '6', title: 'Maintenance', icon: 'construct-outline', route: '/Maintenance'  },
 ];
 
 const GridScreen = () => {
+   const router = useRouter(); 
+
   return (
 
     <View style={styles.container}>
@@ -26,19 +41,20 @@ const GridScreen = () => {
                  source={require('../assets/images/coverpic.jpg')}
                  style={styles.logo}
                />
-    <FlatList
-  data={data}
-  numColumns={3} // Ensure fixed columns
-  key={`${data.length}-grid`} // Forces re-render when numColumns changes
-  keyExtractor={(item) => item.id}
-  renderItem={({ item }) => (
-    <View style={styles.gridItem}>
-      <Ionicons name={item.icon} size={24} color="white" />
-      <Text style={styles.itemText}>{item.title}</Text>
-    </View>
-  )}
-/>
-
+      <FlatList
+        data={data}
+        numColumns={3}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.gridItem}
+             onPress={() => router.push(item.route)}
+          >
+            <Ionicons name={item.icon} size={24} color="white" />
+            <Text style={styles.itemText}>{item.title}</Text>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 };
@@ -50,12 +66,14 @@ const styles = StyleSheet.create({
     marginBottom: 52,
   borderRadius:50,
     elevation: 20,
+    
   },
       logo2: {
     width: 30,
     height: 30,
 margin:5,
-    borderRadius:20
+    borderRadius:20,
+
   },
   container: {
     flex: 1,
@@ -67,6 +85,7 @@ margin:5,
 marginBottom:30,
  flexDirection: "row",
     alignItems: "center",
+    
   width:'100%',
   padding:5,
     backgroundColor: "#9003fc",
@@ -82,7 +101,7 @@ marginBottom:30,
     justifyContent: "center",
   },
   itemText: {
-    color: "white",
+    color: '#7590d9',
     fontSize: 16,
     fontWeight: "600",
     marginTop: 8, // Space between icon and text

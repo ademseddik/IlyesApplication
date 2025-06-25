@@ -13,7 +13,7 @@
       "translucent": true
     },
     "androidNavigationBar": {
-      "backgroundColor": "#4e2eb0"
+      "backgroundColor": "#2A003A"
     },
     "ios": {
       "newArchEnabled": true,
